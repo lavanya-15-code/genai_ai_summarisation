@@ -1,7 +1,7 @@
 import os
 import cv2
 import streamlit as st
-from pytube import Youtube
+from pytube import YouTube
 import subprocess
 from langchain_groq import ChatGroq
 
