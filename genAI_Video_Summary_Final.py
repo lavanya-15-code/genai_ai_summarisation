@@ -73,7 +73,7 @@ def rewrite_summary(summary):
   prompt = f"Please rewrite this video summary in a polished and easy-to-understand way:\n\n{summary}"
   return model.invoke(prompt)
 
-def turn_into_story(summary)
+def turn_into_story(summary):
   prompt = f"Turn the following video summary into a narrative story with characters, setting, conflict, and resolution:\n\n{summary}"
   return model.invoke(prompt)
 
