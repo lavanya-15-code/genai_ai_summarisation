@@ -40,26 +40,26 @@ def download_youtube_video(youtube_url):
     for file in os.listdir(frames_directory):
       os.remove(os.path.join(frames_directory, file))
       
-      video = cv2.VideoCapture(video_pathh)
-      fps = int(video.get(cv2.CAP_PROP_FPS))
-      frames_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
+    videos = cv2.VideoCapture(video_pathh)
+    fps = int(video.get(cv2.CAP_PROP_FPS))
+    frames_count = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
       
-      current_frame = 0
-      frame_number = 1
+    current_frame = 0
+    frame_number = 1
       
-      while current_frame <= frames_count:
-        video.set(cv2.CAP_PROP_POS_FRAMES, current_frame)
-        success, frame = video.read()
-        if not success:
-          current_frame += fps * interval_seconds
-          continue
+    while current_frame <= frames_count:
+      video.set(cv2.CAP_PROP_POS_FRAMES, current_frame)
+      success, frame = video.read()
+      if not success:
+        current_frame += fps * interval_seconds
+        continue
           
       frame_path = os.path.join(frames_directory, f"frame_{frame_number:03d}.jpg")
       cv2.imwrite(frame_path, frame)
       current_frame += fps * interval_seconds
       frame_number += 1
       
-  video.release()
+   video.release()
   
   def describe_video():
     descritions = []
@@ -89,14 +89,15 @@ if youtube_url:
        extract_frames(video_path)
        summary = describe_video()
        st.session_state["summary"] = summary
-       st.markdown("### VIdeo Summary:")
-       st.markdown(summary)
+      
+    st.markdown("### VIdeo Summary:")
+    st.markdown(summary)
+  except Exception as e:
+    st.error(f" Error: {e}")
 
-except Exception as e:
-  st.error(f" Error: {e}")
+ st.divider()
 
-st.divider()
-uploaded_file = st.file_uploader("Or upload a video file:", type=["mp4", "avi", "mov", "mkv"])
+ uploaded_file = st.file_uploader("Or upload a video file:", type=["mp4", "avi", "mov", "mkv"])
 
 if uploaded_file:
   with st.spinner("Processing uploaded video..."):
