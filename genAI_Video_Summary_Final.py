@@ -90,7 +90,7 @@ if youtube_url:
       summary = describe_video()
       st.session_state["summary"] = summary
         
-     st.markdown("### VIdeo Summary:"):
+     st.markdown("### VIdeo Summary:")
      st.markdown(summary)
 
 except Exception as e:
